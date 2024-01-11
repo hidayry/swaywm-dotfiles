@@ -49,7 +49,7 @@ cp -r home/* ~/
 **_Dependencies Archlinux:_**
 
 ```sh
-sudo pacman -S --needed sway swaybg waybar jq findutils mpd ncmpcpp swayidle wf-recorder dmenu brightnessctl mako cliphist grim slurp pamixer polkit-gnome starship xdg-user-dirs xdg-utils gvfs gvfs-mtp gvfs-nfs wl-clipboard playerctl foot network-manager-applet grimshot
+sudo pacman -S --needed sway swaybg waybar jq findutils mpd ncmpcpp swayidle wf-recorder dmenu brightnessctl mako cliphist grim slurp pamixer polkit-gnome starship xdg-user-dirs xdg-utils gvfs gvfs-mtp gvfs-nfs wl-clipboard playerctl foot network-manager-applet grimshot yad
 ```
 
 - **aur-packages**
