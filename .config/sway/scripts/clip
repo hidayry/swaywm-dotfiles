@@ -1,0 +1,3 @@
+#!/bin/bash
+
+cliphist list | rofi -dmenu -p "Clipboard" -i -theme "$HOME/.config/rofi/clip.rasi"| cliphist decode | wl-copy

@@ -1,0 +1,116 @@
+#!/usr/bin/env bash
+
+## Copyright (C) 2020-2023 Aditya Shakya <adi1090x@gmail.com>
+
+# Import Current Theme
+DIR="$HOME/.config"
+RASI="$DIR/rofi/record.rasi"
+iDIR="$DIR/mako/icons"
+
+# Theme Elements
+prompt='Screen Recording'
+mesg="Directory :: $(xdg-user-dir VIDEOS)"
+
+# Options
+layout=$(cat ${RASI} | grep 'USE_ICON' | cut -d'=' -f2)
+if [[ "$layout" == 'NO' ]]; then
+	option_1=" Record Video+Audio"
+	option_2="󰕩 Record Video only"
+	option_3="󰨤 Record Area"
+	option_4="󰿭 Record in 10s"
+	option_5=" Stop Recording"
+else
+	option_1=""
+	option_2="󰕩"
+	option_3="󰨤"
+	option_4="󰿭"
+	option_5=""
+fi
+
+# Rofi CMD
+rofi_cmd() {
+	rofi -dmenu \
+		-p "$prompt" \
+		-mesg "$mesg" \
+		-markup-rows \
+		-theme "${RASI}"
+}
+
+# Pass variables to rofi dmenu
+run_rofi() {
+	echo -e "$option_1\n$option_2\n$option_3\n$option_4\n$option_5" | rofi_cmd
+}
+
+# notify and view Recording
+notify_view() {
+	notify-send -h string:x-canonical-private-synchronous:sys-notify -u low -i "$iDIR"/recorder.svg "Recording Saved..."
+}
+
+# countdown
+countdown() {
+	for sec in $(seq "$1" -1 1); do
+		notify-send -h string:x-canonical-private-synchronous:sys-notify -t 1000 -i "$iDIR"/timer.png "Recording begin in : $sec"
+		sleep 1
+	done
+}
+
+# take record
+record_audio_video() {
+	wf-recorder --audio=alsa_output.pci-0000_00_1b.0.analog-stereo.monitor -f "$(xdg-user-dir VIDEOS)/$(date +'%H:%M:%S_%d-%m-%Y.mp4')"
+	notify_view
+}
+
+record_video() {
+	wf-recorder -f "$(xdg-user-dir VIDEOS)/$(date +'%H:%M:%S_%d-%m-%Y.mp4')"
+	notify_view
+}
+
+record_selected_area() {
+	wf-recorder -g "$(slurp)" -f "$(xdg-user-dir VIDEOS)/$(date +'%H:%M:%S_%d-%m-%Y.mp4')"
+	notify_view
+}
+
+record_audio_video_10() {
+	countdown '10'
+	wf-recorder --audio=alsa_output.pci-0000_00_1b.0.analog-stereo.monitor -f "$(xdg-user-dir VIDEOS)/$(date +'%H:%M:%S_%d-%m-%Y.mp4')"
+	notify_view
+}
+
+stop() {
+	killall -s SIGINT wf-recorder
+}
+
+# Execute Command
+run_cmd() {
+	if [[ "$1" == '--opt1' ]]; then
+		record_audio_video
+	elif [[ "$1" == '--opt2' ]]; then
+		record_video
+	elif [[ "$1" == '--opt3' ]]; then
+		record_selected_area
+	elif [[ "$1" == '--opt4' ]]; then
+		record_audio_video_10
+	elif [[ "$1" == '--opt5' ]]; then
+		stop
+	fi
+}
+
+# Actions
+chosen="$(run_rofi)"
+case ${chosen} in
+"$option_1")
+	run_cmd --opt1
+	;;
+"$option_2")
+	run_cmd --opt2
+	;;
+"$option_3")
+	run_cmd --opt3
+	;;
+"$option_4")
+	run_cmd --opt4
+	;;
+"$option_5")
+	run_cmd --opt5
+	;;
+esac

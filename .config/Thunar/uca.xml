@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+<action>
+	<icon>utilities-terminal</icon>
+	<name>Open Terminal Here</name>
+	<submenu></submenu>
+	<unique-id>1703239942013012-1</unique-id>
+	<command>exo-open --working-directory %f --launch TerminalEmulator</command>
+	<description>Example for a custom action</description>
+	<range></range>
+	<patterns>*</patterns>
+	<startup-notify/>
+	<directories/>
+</action>
+<action>
+	<icon>thunar</icon>
+	<name>Open Thunar as Root Here</name>
+	<submenu></submenu>
+	<unique-id>1703350196648957-2</unique-id>
+	<command>pkexec thunar %f</command>
+	<description></description>
+	<range>*</range>
+	<patterns>*</patterns>
+	<directories/>
+</action>
+<action>
+	<icon>accessories-text-editor</icon>
+	<name>Edit as Root</name>
+	<submenu></submenu>
+	<unique-id>1703350445144348-3</unique-id>
+	<command>pkexec mousepad %f</command>
+	<description></description>
+	<range>*</range>
+	<patterns>*</patterns>
+	<text-files/>
+</action>
+<action>
+	<icon>bcompare</icon>
+	<name>Compare</name>
+	<submenu></submenu>
+	<unique-id>1703671633020500-1</unique-id>
+	<command>meld %F</command>
+	<description></description>
+	<range>*</range>
+	<patterns>*</patterns>
+	<directories/>
+	<text-files/>
+</action>
+<action>
+	<icon>desktop-environment-xfce</icon>
+	<name>Trust Desktop Files</name>
+	<submenu></submenu>
+	<unique-id>1703672041513124-2</unique-id>
+	<command>for f in %F; do sha256sum &quot;$f&quot; | awk &apos;{print $1}&apos; | xargs gio set &quot;$f&quot; metadata::xfce-exe-checksum &amp;&amp; chmod +x &quot;$f&quot;; done</command>
+	<description>Sets gvfs checksum and +x flag for all selected *.desktop files</description>
+	<range>1-1</range>
+	<patterns>*.desktop</patterns>
+	<other-files/>
+</action>
+<action>
+	<icon>blue-folder</icon>
+	<name>Move into new folder</name>
+	<submenu></submenu>
+	<unique-id>1703672320880325-3</unique-id>
+	<command>NEW_FOLDER=$(/usr/bin/zenity --entry --title &apos;Move into new folder&apos; --text &apos;Please enter a name for the new folder&apos;) &amp;&amp; mkdir &quot;$NEW_FOLDER&quot; &amp;&amp; mv %F &quot;$NEW_FOLDER&quot;</command>
+	<description>Select any number of file/folders. A dialog will popup in which you can write the name of a new folder to create. Selected Files will be moved there.</description>
+	<range>*</range>
+	<patterns>*</patterns>
+	<directories/>
+	<audio-files/>
+	<image-files/>
+	<other-files/>
+	<text-files/>
+	<video-files/>
+</action>
+<action>
+	<icon>libreoffice-writer</icon>
+	<name>Convert to ODT</name>
+	<submenu></submenu>
+	<unique-id>1703672541645421-4</unique-id>
+	<command>unoconv -f odt %F</command>
+	<description></description>
+	<range>*</range>
+	<patterns>*.doc;*.docx</patterns>
+	<other-files/>
+</action>
+<action>
+	<icon>application-pdf</icon>
+	<name>Conver to PDF</name>
+	<submenu></submenu>
+	<unique-id>1703672593633513-5</unique-id>
+	<command>unoconv -f pdf %F</command>
+	<description></description>
+	<range>*</range>
+	<patterns>*.doc;*.docx;*.odt;*.odp;*.pps;*.ppt;*.xls;*.xlsx;*.ods;*.pptx</patterns>
+	<other-files/>
+</action>
+<action>
+	<icon>edit-link</icon>
+	<name>Create symlink</name>
+	<submenu></submenu>
+	<unique-id>1703673083596039-6</unique-id>
+	<command>ln -Ts %f %n&quot; (symlink)&quot;</command>
+	<description></description>
+	<range>*</range>
+	<patterns>*</patterns>
+	<directories/>
+	<other-files/>
+</action>
+<action>
+	<icon>edit-link</icon>
+	<name>Create Hardlink</name>
+	<submenu></submenu>
+	<unique-id>1703673137630236-7</unique-id>
+	<command>ln %f %n&quot; (hardlink)&quot;</command>
+	<description></description>
+	<range>*</range>
+	<patterns>*</patterns>
+	<directories/>
+	<other-files/>
+</action>
+<action>
+	<icon>category-edit</icon>
+	<name>Open in bulk renamer</name>
+	<submenu></submenu>
+	<unique-id>1703700330437391-1</unique-id>
+	<command>thunar --bulk-rename %f</command>
+	<description>Opens the bulk renamer for a single file</description>
+	<range>*</range>
+	<patterns>*</patterns>
+	<directories/>
+	<audio-files/>
+	<image-files/>
+	<other-files/>
+	<text-files/>
+	<video-files/>
+</action>
+</actions>

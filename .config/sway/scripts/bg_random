@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Set the path to your image folder
+IMAGE_FOLDER="$HOME/.config/sway/backgrounds"
+
+# Get a random image from the image folder
+random_image=$(find "$IMAGE_FOLDER" -type f | shuf -n 1)
+
+# Set the background using swaybg
+#swww init || swww img "$random_image"
+swaybg -i "$random_image"

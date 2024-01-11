@@ -1,0 +1,7 @@
+#!/bin/bash
+
+swayidle -w \
+    timeout 300 "$HOME/.config/sway/scripts/lock" \
+    timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+    timeout 900 'systemctl suspend' \
+    before-sleep "$HOME/.config/sway/scripts/lock && playerctl stop" &

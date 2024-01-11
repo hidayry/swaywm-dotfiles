@@ -1,0 +1,15 @@
+#!/bin/bash
+
+icons=$HOME/.config/mako/icons/palette.png
+
+# notify and view Recording
+notify_view() {
+	notify-send -h string:x-canonical-private-synchronous:sys-notify -u low -i "$icons" "Color Saved to Clipboard..."
+}
+
+grim -g "$(slurp -p)" -t ppm - \
+    | convert - -format '%[pixel:p{0,0}]' txt:- \
+    | awk 'NR==2' \
+    | awk '{print $3}' \
+    | wl-copy && notify_view
+    
