@@ -112,7 +112,7 @@ for_window [app_id="^.*"] border radius 30
 
 set $opacity 1
 
-for_window [class=".*"] opacity $opacity
+#for_window [class=".*"] opacity $opacity
 for_window [app_id=".*"] opacity $opacity
 
 # set floating for window roles
@@ -135,14 +135,24 @@ for_window [app_id="ristretto"] floating enable
 for_window [app_id="engrampa"] floating enable
 for_window [app_id="polkit-ukui-authentication-agent-1"] floating enable
 for_window [app_id="nm-connection-editor"] floating enable
-for_window [title="File Operation Progress"] floating enable, border pixel 1, sticky enable, resize set width 40 ppt height 30 ppt
+for_window [app_id="xdg-desktop-portal-gtk"] floating enable
+#for_window [title="File Operation Progress"] floating enable, border pixel 1, sticky enable, resize set width 40 ppt height 30 ppt
+for_window [title="(?:Open|Save) (?:File|Folder|As)"] floating enable;
+for_window [title="(?:Open|Save) (?:File|Folder|As)"] resize set 800 600
+for_window [title="File Operation Progress"] floating enabled
+for_window [title="Confirm to replace files"] floating enable
 for_window [title="Picture in picture"] floating enable, sticky enable
-for_window [title="nmtui"] floating enable,  resize set width 50 ppt height 70 ppt
-for_window [title="btop"] floating enable, resize set width 60 ppt height 75 ppt
-for_window [title="Save File"] floating enable
+#for_window [title="nmtui"] floating enable,  resize set width 50 ppt height 70 ppt
+#for_window [title="btop"] floating enable, resize set width 60 ppt height 75 ppt
+
+for_window [class="GParted"] floating enable
 
 for_window [app_id="google-chrome"] inhibit_idle fullscreen
 
+for_window [app_id="google-chrome"] move container to workspace number 2, focus
+for_window [app_id="thunar"] move container to workspace number 3, focus
+for_window [app_id="org.telegram.desktop"] move container to workspace number 6, focus
+for_window [app_id="shotcut"] move container to workspace number 5, focus
 
 ### Color Themes
 # class                 border  bground text    indicator child_border
@@ -206,7 +216,7 @@ client.background       #ffffff
     bindsym XF86AudioMute exec ~/.config/sway/scripts/volume --toggle
 
     # Control MPRIS aware media players with playerctl
-    bindsym XF86AudioMedia exec playerctl play-pause
+    #bindsym XF86AudioMedia exec playerctl play-pause
     bindsym XF86AudioPlay exec playerctl play-pause
     bindsym XF86AudioStop exec playerctl stop
     bindsym XF86AudioNext exec playerctl next
