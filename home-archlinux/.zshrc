@@ -26,6 +26,8 @@ plug "chivalryq/git-alias"
 plug "hlissner/zsh-autopair"
 #plug "MAHcodes/distro-prompt"
 
+bindkey "^[[H" beginning-of-line
+bindkey "^[[F" end-of-line
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='fg=green,bold'

@@ -59,7 +59,7 @@ exec mako
 
 exec /usr/bin/lxpolkit
 
-#exec /usr/lib/x86_64-linux-gnu/ukui-polkit/polkit-ukui-authentication-agent-1
+#exec /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
 
 exec nm-applet --indicator
 
@@ -141,6 +141,7 @@ for_window [title="(?:Open|Save) (?:File|Folder|As)"] floating enable;
 for_window [title="(?:Open|Save) (?:File|Folder|As)"] resize set 800 600
 for_window [title="File Operation Progress"] floating enabled
 for_window [title="Confirm to replace files"] floating enable
+for_window [title="Choose Files"] floating enable
 for_window [title="Picture in picture"] floating enable, sticky enable
 #for_window [title="nmtui"] floating enable,  resize set width 50 ppt height 70 ppt
 #for_window [title="btop"] floating enable, resize set width 60 ppt height 75 ppt
@@ -164,6 +165,15 @@ client.unfocused          #4c7899 #285577 #ffffff #2e9ef4   #285577
 client.urgent           #2f343a #900000 #ffffff #900000   #900000
 client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 client.background       #ffffff
+
+#set $gnome-schema org.gnome.desktop.interface
+
+# exec_always {
+#     gsettings set $gnome-schema gtk-theme 'Tokyonight-Dark-BL'
+#     gsettings set $gnome-schema icon-theme 'TokyoNight-SE'
+#     gsettings set $gnome-schema cursor-theme 'Bibata-Modern-Ice'
+#     # gsettings set $gnome-schema font-name 'Your font name'
+# }
 
 ### Key bindings
 #

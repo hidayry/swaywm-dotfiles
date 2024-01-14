@@ -1,68 +1,40 @@
-#--
-#--
-#export BAT_THEME="Dracula"
-#--
-#. "$HOME/.cargo/env"
-export FZF_BASE="/usr/bin/fzf"
-export EDITOR='nvim'
-export BROWSER='google-chrome-stable'
-export ZSH="$HOME/.oh-my-zsh"
+# Created by Zap installer
+eval "$(starship init zsh)"
 
-if [ -d "$HOME/.local/bin" ] ;
-then PATH="$HOME/.local/bin:$PATH"
-fi
+[ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
 
-#load compinit
+# Load and initialise completion system
+#autoload -Uz compinit
+#compinit
 autoload -Uz compinit
 for dump in ~/.zcompdump(N.mh+24); do
     compinit -d ~/.zcompdump
 done
 compinit -C -d ~/.zcompdump
 
-autoload -Uz add-zsh-hook
-autoload -Uz vcs_info
-precmd () { vcs_info }
-_comp_options+=(globdots)
+plug "zsh-users/zsh-autosuggestions"
+plug "zap-zsh/supercharge"
+#plug "zap-zsh/zap-prompt"
+plug "zsh-users/zsh-syntax-highlighting"
+plug "zsh-users/zsh-history-substring-search"
+plug "zap-zsh/fzf"
+plug "MichaelAquilina/zsh-you-should-use"
+plug "Aloxaf/fzf-tab"
+plug "zap-zsh/sudo"
+plug "zap-zsh/completions"
+plug "chivalryq/git-alias"
+plug "hlissner/zsh-autopair"
+#plug "MAHcodes/distro-prompt"
 
-zstyle ':completion:*' verbose true
-zstyle ':completion:*:*:*:*:*' menu select
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS} 'ma=48;5;197;1'
-zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-zstyle ':completion:*:warnings' format "%B%F{red}No matches for:%f %F{magenta}%d%b"
-zstyle ':completion:*:descriptions' format '%F{yellow}[-- %d --]%f'
-zstyle ':vcs_info:*' formats ' %B%s-[%F{magenta}%f %F{yellow}%b%f]-'
-
-#waiting dots
-expand-or-complete-with-dots() {
-    echo -n "\e[31m…\e[0m"
-    zle expand-or-complete
-    zle redisplay
-}
-zle -N expand-or-complete-with-dots
-bindkey "^I" expand-or-complete-with-dots
-
-#zsh option
-setopt PROMPT_SUBST        # enable command substitution in prompt
-setopt MENU_COMPLETE       # Automatically highlight first element of completion menu
-setopt LIST_PACKED		   # The completion menu takes less space.
-setopt AUTO_LIST           # Automatically list choices on ambiguous completion.
-setopt HIST_IGNORE_DUPS	   # Do not write events to history that are duplicates of previous events
-setopt HIST_FIND_NO_DUPS   # When searching history don't display results already cycled through twice
-setopt COMPLETE_IN_WORD    # Complete from both ends of a word.
-stty start undef
-stty stop undef
-setopt noflowcontrol
-
-#plugin
-source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-#source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
-#bindkey '^A' history-substring-search-up
-#bindkey '^B' history-substring-search-down
-
-plugins=(git fzf cp aliases adb sudo colored-man-pages dirhistory debian zsh-interactive-cd web-search wd systemd starship)
-
-source $ZSH/oh-my-zsh.sh
+bindkey "^[[H" beginning-of-line
+bindkey "^[[F" end-of-line
+bindkey "^[OA" history-substring-search-up
+bindkey "^[OB" history-substring-search-down
+HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND="fg=green,bold"
+HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND="fg=red,bold"
+#HISTORY_SUBSTRING_SEARCH_FUZZY=1
+HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1
+HISTORY_SUBSTRING_SEARCH_PREFIXED=1
 
 ##alias
 #apt
@@ -84,3 +56,5 @@ alias ll='exa -a -l -b --color always --icons --group-directories-first'
 alias cat="batcat"
 alias hdd="echo tami | sudo -S $HOME/.scripts/HDSentinel"
 alias mem="echo tami | sudo -S ps_mem"
+alias recordaudio="wf-recorder --audio=alsa_output.pci-0000_00_1b.0.analog-stereo.monitor --file=wf-recorder-audio.mp4"
+alias recordvideo="wf-recorder --file=wf-recorder-no-audio.mp4"
