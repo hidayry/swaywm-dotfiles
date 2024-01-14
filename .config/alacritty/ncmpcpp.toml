@@ -1,0 +1,42 @@
+import = ["~/.config/alacritty/colors-material.toml", "~/.config/alacritty/fonts.toml"]
+live_config_reload = true
+
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[cursor.style]
+shape = "Block"
+
+[env]
+TERM = "xterm-256color"
+
+[mouse]
+hide_when_typing = true
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[selection]
+save_to_clipboard = true
+semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"
+
+[shell]
+program = "/usr/bin/zsh"
+
+[bell]
+animation = "EaseOutExpo"
+color = "#e4c9af"
+duration = 1
+
+[window]
+opacity = 1.0
+blur = true
+
+[window.class]
+general = "Alacritty"
+instance = "Alacritty"
+
+[window.padding]
+x = 50
+y = 40
