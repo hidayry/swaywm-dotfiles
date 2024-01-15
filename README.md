@@ -49,7 +49,7 @@ cp -r home/* ~/
 **_Dependencies Archlinux:_**
 
 ```sh
-sudo pacman -S --needed sway swaybg waybar jq findutils mpd ncmpcpp swayidle wf-recorder dmenu brightnessctl mako cliphist grim slurp pamixer polkit-gnome starship xdg-user-dirs xdg-utils gvfs gvfs-mtp gvfs-nfs wl-clipboard playerctl foot network-manager-applet grimshot yad
+sudo pacman -S --needed sway swaybg waybar jq findutils mpd ncmpcpp swayidle wf-recorder dmenu brightnessctl mako cliphist grim slurp pamixer polkit-gnome starship xdg-user-dirs xdg-utils gvfs gvfs-mtp gvfs-nfs wl-clipboard playerctl foot network-manager-applet grimshot yad xdg-desktop-portal-wlr
 ```
 
 - **aur-packages**
@@ -71,7 +71,7 @@ for zap zsh in this [link](https://github.com/zap-zsh/zap)
 cause polkit-gnome crash in debian 12, i use lxpolkit
 
 ```sh
-sudo apt install sway lxpolkit yad jq findutils pamixer brightnessctl wf-recorder grim slurp grimshot wl-clipboard swayidle waybar mako-notifier mpdris2 mpd ncmpcpp suckless-tools xdg-user-dirs playerctl foot network-manager-gnome xdg-utils papirus-icon-theme libplayerctl-dev gir1.2-playerctl-2.0 zsh zsh-autosuggestions zsh-syntax-highlighting
+sudo apt install sway lxpolkit yad jq findutils pamixer brightnessctl wf-recorder grim slurp grimshot wl-clipboard swayidle waybar mako-notifier mpdris2 mpd ncmpcpp suckless-tools xdg-user-dirs playerctl foot network-manager-gnome xdg-utils papirus-icon-theme libplayerctl-dev gir1.2-playerctl-2.0 zsh zsh-autosuggestions zsh-syntax-highlighting xdg-desktop-portal-wlr
 ```
 
 **for other debian12 build from source**
