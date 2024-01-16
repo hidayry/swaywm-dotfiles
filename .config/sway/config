@@ -25,8 +25,9 @@ set $browser google-chrome-stable
 set $filemanager thunar
 
 include /etc/sway/config-vars.d/*
+include catppuccin-mocha
 
-default_floating_border none
+#default_floating_border none
 #smart_gaps on
 smart_borders off
 gaps inner 5
@@ -48,18 +49,20 @@ swaybg_command -
 #
 # Example configuration:
 #
-exec ~/.config/sway/scripts/sleep
-
 exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
 
 exec hash dbus-update-activation-environment 2>/dev/null && \
      dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 
+exec ~/.config/sway/scripts/sleep
+
 exec mako
 
-exec /usr/bin/lxpolkit
+#exec_always ~/.config/sway/scripts/import-gsettings
 
-#exec /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
+#exec /usr/bin/lxpolkit
+
+exec /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
 
 exec nm-applet --indicator
 
@@ -71,7 +74,9 @@ exec wl-paste --type images --watch cliphist store
 
 #exec wl-paste -t text --watch clipman store --no-persist
 
-exec ~/.config/sway/scripts/bg_random
+#exec gnome-keyring-daemon --daemonize --start --components=gpg,pkcs11,secrets,ssh
+
+exec ~/.config/sway/scripts/background-swap.sh
 
 exec mpd
 
@@ -157,14 +162,21 @@ for_window [app_id="shotcut"] move container to workspace number 5, focus
 
 ### Color Themes
 # class                 border  bground text    indicator child_border
-client.focused          #c6a0f6 #c6a0f6 #2D2D2D #c6a0f6   #c6a0f6
+#client.focused          #c6a0f6 #c6a0f6 #2D2D2D #c6a0f6   #c6a0f6
 # client.focused          #4c7899 #285577 #ffffff #2e9ef4   #285577
-client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
-client.unfocused          #4c7899 #285577 #ffffff #2e9ef4   #285577
+#client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
+#client.unfocused          #4c7899 #285577 #ffffff #2e9ef4   #285577
 # client.unfocused        #333333 #222222 #888888 #292d2e   #222222
-client.urgent           #2f343a #900000 #ffffff #900000   #900000
-client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
-client.background       #ffffff
+#client.urgent           #2f343a #900000 #ffffff #900000   #900000
+#client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+#client.background       #ffffff
+
+client.focused           $mauve    $base $text  $lavender $mauve
+client.focused_inactive  $mantle       $base $text  $mantle $mantle
+client.unfocused         $mantle        $base $text  $mantle $mantle
+client.urgent            $peach        $base $peach $overlay0  $peach
+client.placeholder       $base     $base $text  $overlay0  $overlay0
+client.background        $base
 
 #set $gnome-schema org.gnome.desktop.interface
 

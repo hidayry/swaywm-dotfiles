@@ -1,0 +1,14 @@
+#!/bin/bash
+
+background_dir="$HOME/.config/sway/backgrounds"
+
+while true; do
+    # Get a random image file from the background directory
+    random_image=$(find "$background_dir" -type f | shuf -n 1)
+    
+    # Set the background using swaybg
+    swaybg -i "$random_image"
+
+    # Wait for 30 minutes before changing the background again
+    sleep 1800
+  done
