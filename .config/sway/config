@@ -60,9 +60,9 @@ exec mako
 
 #exec_always ~/.config/sway/scripts/import-gsettings
 
-#exec /usr/bin/lxpolkit
+exec /usr/bin/lxpolkit
 
-exec /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
+#exec /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
 
 exec nm-applet --indicator
 
@@ -76,7 +76,7 @@ exec wl-paste --type images --watch cliphist store
 
 #exec gnome-keyring-daemon --daemonize --start --components=gpg,pkcs11,secrets,ssh
 
-exec ~/.config/sway/scripts/background-swap.sh
+exec ~/.config/sway/scripts/bg_random_auto
 
 exec mpd
 
