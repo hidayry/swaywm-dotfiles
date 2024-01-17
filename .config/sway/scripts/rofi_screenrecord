@@ -14,17 +14,17 @@ mesg="Directory :: $(xdg-user-dir VIDEOS)"
 # Options
 layout=$(cat ${RASI} | grep 'USE_ICON' | cut -d'=' -f2)
 if [[ "$layout" == 'NO' ]]; then
-	option_1=" Record Video+Audio"
-	option_2="󰕩 Record Video only"
-	option_3="󰨤 Record Area"
-	option_4="󰿭 Record in 10s"
-	option_5=" Stop Recording"
+	option_1=" Record Video+Audio"
+	option_2=" Record Video only"
+	option_3=" Record Area"
+	option_4="10 Record in 10s"
+	option_5=" Stop Recording"
 else
-	option_1=""
-	option_2="󰕩"
-	option_3="󰨤"
-	option_4="󰿭"
-	option_5=""
+	option_1=""
+	option_2=""
+	option_3=""
+	option_4="10"
+	option_5=""
 fi
 
 # Rofi CMD
