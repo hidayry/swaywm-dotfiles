@@ -27,11 +27,13 @@ set $filemanager thunar
 include /etc/sway/config-vars.d/*
 include catppuccin-mocha
 
-#default_floating_border none
+#default_orientation vertical
+default_floating_border none
 #smart_gaps on
 smart_borders off
-gaps inner 5
-gaps outer 7
+gaps inner 10
+#gaps outer 7
+default_border pixel 2
 
 ### Output configuration
 #
@@ -210,7 +212,7 @@ client.background        $base
     bindsym $mod+c exec $browser
     
     # Start chrome
-    bindsym $mod+p exec $colorpicker
+    bindsym $mod+n exec $colorpicker
     
     # Screenshot and video recorder
     bindsym Print exec ~/.config/sway/scripts/rofi_screenshot
