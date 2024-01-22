@@ -12,7 +12,7 @@ prompt='Screen Recording'
 mesg="Directory :: $(xdg-user-dir VIDEOS)"
 
 # Options
-layout=$(cat ${RASI} | grep 'USE_ICON' | cut -d'=' -f2)
+layout="cat ${RASI} | grep 'USE_ICON' | cut -d'=' -f2"
 if [[ "$layout" == 'NO' ]]; then
 	option_1=" Record Video+Audio"
 	option_2=" Record Video only"

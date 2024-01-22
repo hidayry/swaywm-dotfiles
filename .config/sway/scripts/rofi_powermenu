@@ -8,11 +8,11 @@ RASI="$DIR/rofi/powermenu.rasi"
 CNFR="$DIR/rofi/confirm.rasi"
 
 # Theme Elements
-prompt="`hostname` (`echo $DESKTOP_SESSION`)"
-mesg="Uptime : `uptime -p | sed -e 's/up //g'`"
+prompt="$(hostname) ($DESKTOP_SESSION)"
+mesg="Uptime : $(uptime -p | sed -e 's/up //g')"
 
 # Options
-layout=`cat ${RASI} | grep 'USE_ICON' | cut -d'=' -f2`
+layout="cat ${RASI} | grep 'USE_ICON' | cut -d'=' -f2"
 if [[ "$layout" == 'NO' ]]; then
 	option_1=" Lock"
 	option_2=" Logout"
@@ -28,7 +28,7 @@ else
 	option_5=""
 	option_6="⏻"
 fi
-cnflayout=`cat ${CNFR} | grep 'USE_ICON' | cut -d'=' -f2`
+cnflayout="cat ${CNFR} | grep 'USE_ICON' | cut -d'=' -f2"
 if [[ "$cnflayout" == 'NO' ]]; then
 	yes=' Yes'
 	no=' No'
@@ -43,7 +43,7 @@ rofi_cmd() {
 		-p "$prompt" \
 		-mesg "$mesg" \
 		-markup-rows \
-		-theme ${RASI}
+		-theme "${RASI}"
 }
 
 # Pass variables to rofi dmenu
@@ -56,7 +56,7 @@ confirm_cmd() {
 	rofi -dmenu \
 		-p 'Confirmation' \
 		-mesg 'Are you Sure?' \
-		-theme ${CNFR}
+		-theme "${CNFR}"
 }
 
 # Ask for confirmation

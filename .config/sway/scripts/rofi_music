@@ -8,17 +8,17 @@ DIR="$HOME/.config"
 RASI="$DIR/rofi/music.rasi"
 
 # Theme Elements
-status="`mpc status`"
+status="$(mpc status)"
 if [[ -z "$status" ]]; then
 	prompt='Offline'
 	mesg="MPD is Offline"
 else
-	prompt="`mpc -f "%artist%" current`"
-	mesg="`mpc -f "%file%" current`"
+  prompt="$(mpc -f "%artist%" current)"
+  mesg="$(mpc -f "%file%" current)"
 fi
 
 # Options
-layout=`cat ${RASI} | grep 'USE_ICON' | cut -d'=' -f2`
+layout="cat ${RASI} | grep 'USE_ICON' | cut -d'=' -f2"
 if [[ "$layout" == 'NO' ]]; then
 	if [[ ${status} == *"[playing]"* ]]; then
 		option_1=" Pause"
@@ -68,9 +68,9 @@ rofi_cmd() {
 	rofi -dmenu \
 		-p "$prompt" \
 		-mesg "$mesg" \
-		${active} ${urgent} \
+		"${active}" "${urgent}" \
 		-markup-rows \
-		-theme ${RASI}
+		-theme "${RASI}"
 }
 
 # Pass variables to rofi dmenu
@@ -83,13 +83,13 @@ iDIR="$HOME/.config/hypr/mako/icons"
 notify_song="notify-send -h string:x-canonical-private-synchronous:sys-notify-song -u low -i ${iDIR}/music.png"
 run_cmd() {
 	if [[ "$1" == '--opt1' ]]; then
-		mpc -q toggle && ${notify_song} "`mpc -f "%artist%" current`"
+    mpc -q toggle && ${notify_song} "$(mpc -f "%artist%" current)"
 	elif [[ "$1" == '--opt2' ]]; then
 		mpc -q stop
 	elif [[ "$1" == '--opt3' ]]; then
-		mpc -q pause && mpc -q prev && mpc -q start && ${notify_song} "`mpc -f "%artist%" current`"
+    mpc -q pause && mpc -q prev && mpc -q start && ${notify_song} "$(mpc -f "%artist%" current)"
 	elif [[ "$1" == '--opt4' ]]; then
-		mpc -q pause && mpc -q next && mpc -q start && ${notify_song} "`mpc -f "%artist%" current`"
+    mpc -q pause && mpc -q next && mpc -q start && ${notify_song} "$(mpc -f "%artist%" current)"
 	elif [[ "$1" == '--opt5' ]]; then
 		mpc -q repeat
 	elif [[ "$1" == '--opt6' ]]; then
@@ -100,22 +100,22 @@ run_cmd() {
 # Actions
 chosen="$(run_rofi)"
 case ${chosen} in
-    $option_1)
+    "$option_1")
 		run_cmd --opt1
         ;;
-    $option_2)
+    "$option_2")
 		run_cmd --opt2
         ;;
-    $option_3)
+    "$option_3")
 		run_cmd --opt3
         ;;
-    $option_4)
+    "$option_4")
 		run_cmd --opt4
         ;;
-    $option_5)
+    "$option_5")
 		run_cmd --opt5
         ;;
-    $option_6)
+    "$option_6")
 		run_cmd --opt6
         ;;
 esac
